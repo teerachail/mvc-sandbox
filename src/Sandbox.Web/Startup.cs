@@ -1,6 +1,5 @@
-﻿using System;
+﻿
 using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
 using Microsoft.Framework.DependencyInjection;
 
 namespace Sandbox.Web
@@ -9,10 +8,15 @@ namespace Sandbox.Web
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("default", "{controller=Home}/{action=Index}");
+            });
         }
     }
 }
