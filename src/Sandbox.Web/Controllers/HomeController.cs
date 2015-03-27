@@ -7,7 +7,7 @@ namespace Sandbox.Web.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Edit", "Products");
         }
     }
 }

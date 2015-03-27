@@ -1,0 +1,63 @@
+﻿@model Product
+@*@tagHelperPrefix "th:" *@
+<html>
+<body>
+    <section>
+        <h2>Select by attribute</h2>
+        <p data-th-color="color: red;">
+            This should be red.
+        </p>
+    </section>
+    <section>
+        <h2>Select by attributes (AND)</h2>
+        <p data-th-color-and-size1="color: red;" data-th-color-and-size2="font-size: 24px;">
+            This should be red and big.
+        </p>
+        <p data-th-color-and-size1="color: red;">
+            This should be normal.
+        </p>
+        <p data-th-color-and-size2="font-size: 24px;">
+            This should be normal.
+        </p>
+    </section>
+    <section>
+        <h2>Select by attributes (Or)</h2>
+        <p data-th-color-or-size1="color: red;" data-th-color-or-size2="font-size: 24px;">
+            This should be red and big.
+        </p>
+        <p data-th-color-or-size1="color: red;">
+            This should be red.
+        </p>
+        <p data-th-color-or-size2="font-size: 24px;">
+            This should be big.
+        </p>
+    </section>
+    <section>
+        <h2>Select by attribute (bang)</h2>
+        <!p data-th-color="color: red;">
+        This should NOT be red.
+        </!p>
+    </section>
+    <section>
+        <h2>Select by attribute (prefix)</h2>
+        <th:p data-th-color="color: red;">
+            This should be red if using a prefix.
+        </th:p>
+    </section>
+    <section>
+        <h2>Select by attributes (doubled)</h2>
+        <p data-th-color-or-size1="color: red;" data-th-color-or-size1="color: red;" data-th-color-or-size2="font-size: 24px;" data-th-color-or-size2="font-size: 24px;">
+            This should be red and big.
+        </p>
+    </section>
+    <section>
+        <h2>Order</h2>
+        <p data-th-style="color: red;" data-th-order-after>
+            This should be red and big.
+        </p>
+        <p data-th-style="color: red;" data-th-order-after="">
+            This should be red and small.
+        </p>
+    </section>
+</body>
+</html>
