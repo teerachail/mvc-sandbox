@@ -6,16 +6,23 @@
         "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5000"
     },
     "dependencies": {
-        "Kestrel": "1.0.0-beta4-*",
-        "Microsoft.AspNet.Mvc": "6.0.0-beta4-*",
-        "Microsoft.AspNet.Tooling.Razor": "1.0.0-beta4-*",
-        "Microsoft.AspNet.Server.IIS": "1.0.0-beta4-*",
-        "Microsoft.AspNet.Server.WebListener": "1.0.0-beta4-*",
-        "Microsoft.AspNet.StaticFiles": "1.0.0-beta4-*"
+        "Kestrel": "1.0.0-beta5",
+        "Microsoft.AspNet.Mvc": "6.0.0-beta5",
+        "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta5",
+        "Microsoft.AspNet.Tooling.Razor": "1.0.0-beta5",
+        "Microsoft.AspNet.Server.IIS": "1.0.0-beta5",
+        "Microsoft.AspNet.Server.WebListener": "1.0.0-beta5",
+        "Microsoft.AspNet.StaticFiles": "1.0.0-beta5",
+        "Microsoft.Framework.Logging.Console": "1.0.0-beta5",
+        "Microsoft.Framework.Logging.TraceSource": "1.0.0-beta5"
     },
     "frameworks": {
         "dnx451": { },
-        "dnxcore50": { }
+        "dnxcore50": {
+            "dependencies": {
+                "System.Diagnostics.TraceSource": "4.0.0-beta-*"
+            }
+        }
     },
     "bundleExclude": [
         "node_modules",

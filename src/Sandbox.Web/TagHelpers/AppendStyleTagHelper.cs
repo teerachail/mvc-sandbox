@@ -12,8 +12,8 @@ namespace Sandbox.Web.TagHelpers
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            string style = null;
-            output.Attributes.TryGetValue("style", out style);
+            TagHelperAttribute style = null;
+            output.Attributes.TryGetAttribute("style", out style);
 
             style += Style;
             output.Attributes["style"] = style;

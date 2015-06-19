@@ -16,8 +16,8 @@ namespace Sandbox.Web.TagHelpers
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            string style;
-            if (output.Attributes.TryGetValue("style", out style))
+            TagHelperAttribute style;
+            if (output.Attributes.TryGetAttribute("style", out style))
             {
                 output.Attributes["style"] = style + "font-size: 6px;";
                 return;
