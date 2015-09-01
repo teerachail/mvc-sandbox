@@ -35,9 +35,9 @@ namespace BasicModelBinding
             var person = new Person();
 
             var form = await ActionContext.HttpContext.Request.ReadFormAsync();
-            person.Name = form.Get("name");
-            person.Age = int.Parse(form.Get("age"));
-            person.BirthDate = DateTime.Parse(form.Get("birthdate"));
+            person.Name = form["name"];
+            person.Age = int.Parse(form["age"]);
+            person.BirthDate = DateTime.Parse(form["birthdate"]);
             
             if (ActionContext.ModelState.IsValid)
             {
