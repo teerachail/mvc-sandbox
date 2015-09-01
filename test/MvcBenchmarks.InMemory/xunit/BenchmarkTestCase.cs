@@ -1,7 +1,7 @@
 ﻿// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,7 +13,15 @@ namespace MvcBenchmarks
 {
     public class BenchmarkTestCase : XunitTestCase
     {
+#if DNX451
+        [NonSerialized]
+#endif
         private readonly IMessageSink _diagnosticMessageSink;
+
+#if DNX451
+        [NonSerialized]
+#endif
+        private readonly MetricCollector _metricCollector = new MetricCollector();
 
         public BenchmarkTestCase(
                 int iterations,
@@ -35,20 +43,15 @@ namespace MvcBenchmarks
             Variation = variation;
             Iterations = iterations;
             WarmupIterations = warmupIterations;
-
-            var methodArguments = new List<object> { MetricCollector };
-            if (testMethodArguments != null)
-            {
-                methodArguments.AddRange(testMethodArguments);
-            }
-
-            TestMethodArguments = methodArguments.ToArray();
+            
+            TestMethodArguments = testMethodArguments.ToArray();
         }
 
         public string Variation { get; private set; }
         public int Iterations { get; private set; }
         public int WarmupIterations { get; private set; }
-        public MetricCollector MetricCollector { get; private set; } = new MetricCollector();
+
+        public MetricCollector MetricCollector => _metricCollector;
 
         public override Task<RunSummary> RunAsync(
             IMessageSink diagnosticMessageSink,

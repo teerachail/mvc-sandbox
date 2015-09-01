@@ -17,15 +17,8 @@ namespace MvcBenchmarks
                 .AddEnvironmentVariables()
                 .Build();
 
-            var resultDatabasesSection = config.GetSection("benchmarks:resultDatabases");
-
             return new BenchmarkConfig
             {
-                RunIterations = bool.Parse(config["benchmarks:runIterations"]),
-                ResultDatabases = resultDatabasesSection.GetChildren().Select(s => config[s.Key]).ToArray(),
-                BenchmarkDatabaseInstance = config["benchmarks:benchmarkDatabaseInstance"],
-                ProductReportingVersion = config["benchmarks:productReportingVersion"],
-                CustomData = config["benchmarks:customData"]
             };
         });
 
@@ -41,6 +34,5 @@ namespace MvcBenchmarks
         public IEnumerable<string> ResultDatabases { get; private set; }
         public string BenchmarkDatabaseInstance { get; private set; }
         public string ProductReportingVersion { get; private set; }
-        public string CustomData { get; private set; }
     }
 }

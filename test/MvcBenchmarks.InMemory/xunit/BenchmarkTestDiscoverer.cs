@@ -33,24 +33,13 @@ namespace MvcBenchmarks
             var tests = new List<IXunitTestCase>();
             foreach (var variation in variations)
             {
-                if (BenchmarkConfig.Instance.RunIterations)
-                {
-                    tests.Add(new BenchmarkTestCase(
-                        factAttribute.GetNamedArgument<int>(nameof(BenchmarkAttribute.Iterations)),
-                        factAttribute.GetNamedArgument<int>(nameof(BenchmarkAttribute.WarmupIterations)),
-                        variation.Key,
-                        _diagnosticMessageSink,
-                        testMethod,
-                        variation.Value));
-                }
-                else
-                {
-                    var args = new[] { new MetricCollector() }
-                        .Concat(variation.Value)
-                        .ToArray();
-
-                    tests.Add(new XunitTestCase(_diagnosticMessageSink, discoveryOptions.MethodDisplayOrDefault(), testMethod, args));
-                }
+                tests.Add(new BenchmarkTestCase(
+                    factAttribute.GetNamedArgument<int>(nameof(BenchmarkAttribute.Iterations)),
+                    factAttribute.GetNamedArgument<int>(nameof(BenchmarkAttribute.WarmupIterations)),
+                    variation.Key,
+                    _diagnosticMessageSink,
+                    testMethod,
+                    variation.Value));
             }
 
             return tests;

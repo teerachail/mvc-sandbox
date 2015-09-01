@@ -10,8 +10,6 @@ namespace MvcBenchmarks
 {
     public class BenchmarkRunSummary : RunSummary
     {
-        private List<BenchmarkIterationSummary> _iterations = new List<BenchmarkIterationSummary>();
-
         // Dimensions
         public string TestClassFullName { get; set; }
         public string TestClass { get; set; }
@@ -26,6 +24,7 @@ namespace MvcBenchmarks
         public int Iterations { get; set; }
 
         // Metrics
+        public TimeSpan TimeElapsed { get; set; }
         public long TimeElapsedAverage { get; private set; }
         public long TimeElapsedPercentile99 { get; private set; }
         public long TimeElapsedPercentile95 { get; private set; }
@@ -38,43 +37,15 @@ namespace MvcBenchmarks
         public long MemoryDeltaPercentile90 { get; private set; }
         public double MemoryDeltaStandardDeviation { get; private set; }
 
-        public IEnumerable<BenchmarkIterationSummary> IterationSummaries => _iterations;
-
-        public void Aggregate(BenchmarkIterationSummary summary)
-        {
-            base.Aggregate(summary);
-            _iterations.Add(summary);
-        }
-
-        public void PopulateMetrics()
-        {
-            if (_iterations.Count != Iterations)
-            {
-                throw new InvalidOperationException($"Recorded iterations ({_iterations.Count}) does not match expected iterations ({Iterations})");
-            }
-
-            var elapsedTimes = IterationSummaries.Select(i => i.TimeElapsed).ToArray();
-            TimeElapsedAverage = elapsedTimes.Sum() / elapsedTimes.Length;
-            TimeElapsedStandardDeviation = StandardDeviation(elapsedTimes, TimeElapsedAverage);
-            TimeElapsedPercentile99 = Percentile(elapsedTimes, 0.99);
-            TimeElapsedPercentile95 = Percentile(elapsedTimes, 0.95);
-            TimeElapsedPercentile90 = Percentile(elapsedTimes, 0.90);
-
-            var memoryDeltas = IterationSummaries.Select(i => i.MemoryDelta).ToArray();
-            MemoryDeltaAverage = memoryDeltas.Sum() / memoryDeltas.Length;
-            MemoryDeltaPercentile99 = Percentile(memoryDeltas, 0.99);
-            MemoryDeltaPercentile95 = Percentile(memoryDeltas, 0.95);
-            MemoryDeltaPercentile90 = Percentile(memoryDeltas, 0.90);
-            MemoryDeltaStandardDeviation = StandardDeviation(memoryDeltas, MemoryDeltaAverage);
-        }
-
         public override string ToString()
         {
             return $@"{TestClass}.{TestMethod} (Variation={Variation})
     Warmup Iterations: {WarmupIterations}
     Collection Iterations: {Iterations}
-    Time Elapsed (95th Percentile): {TimeElapsedPercentile95}ms
-    Memory Delta (95th Percentile): {MemoryDeltaPercentile95}";
+    Total Time Elapsed: {TimeElapsed}
+    Requests per Second: {Iterations * ((double)TimeSpan.FromSeconds(1).Ticks / (double)TimeElapsed.Ticks)}
+    Iteration Time Elapsed (95th Percentile): {TimeElapsedPercentile95}ms
+    Iteration Memory Delta (95th Percentile): {MemoryDeltaPercentile95}";
         }
 
         private static long Percentile(IEnumerable<long> results, double percentile)

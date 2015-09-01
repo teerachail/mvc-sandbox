@@ -6,7 +6,7 @@ using Xunit.Sdk;
 
 namespace MvcBenchmarks
 {
-    [XunitTestCaseDiscoverer("EntityFramework.Microbenchmarks.Core.BenchmarkTestCaseDiscoverer", "EntityFramework.Microbenchmarks.Core")]
+    [XunitTestCaseDiscoverer("MvcBenchmarks.BenchmarkTestCaseDiscoverer", "MvcBenchmarks.InMemory")]
     public class BenchmarkAttribute : FactAttribute
     {
         public int Iterations { get; set; } = 100;

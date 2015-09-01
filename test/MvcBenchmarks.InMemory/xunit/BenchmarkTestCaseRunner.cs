@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit.Abstractions;
 using Xunit.Sdk;
+using System.Diagnostics;
 
 #if DNXCORE50 || DNX451
 using Microsoft.Framework.Configuration;
@@ -65,7 +66,6 @@ namespace MvcBenchmarks
                 Framework = _framework,
                 WarmupIterations = TestCase.WarmupIterations,
                 Iterations = TestCase.Iterations,
-                CustomData = BenchmarkConfig.Instance.CustomData
             };
 
             for (int i = 0; i < TestCase.WarmupIterations; i++)
@@ -74,22 +74,24 @@ namespace MvcBenchmarks
                 runSummary.Aggregate(await runner.RunAsync());
             }
 
+            var stopwatch = new Stopwatch();
             for (int i = 0; i < TestCase.Iterations; i++)
             {
                 TestCase.MetricCollector.Reset();
                 var runner = CreateRunner(i + 1, TestCase.Iterations, TestCase.Variation, warmup: false);
-                var iterationSummary = new BenchmarkIterationSummary();
-                iterationSummary.Aggregate(await runner.RunAsync(), TestCase.MetricCollector);
-                runSummary.Aggregate(iterationSummary);
+
+                stopwatch.Start();
+
+                // Running the actual test
+                var result = await runner.RunAsync();
+
+                stopwatch.Stop();
+                runSummary.Aggregate(result);
             }
 
-            runSummary.PopulateMetrics();
+            runSummary.TimeElapsed = stopwatch.Elapsed;
             _diagnosticMessageSink.OnMessage(new XunitDiagnosticMessage(runSummary.ToString()));
-
-            foreach (var database in BenchmarkConfig.Instance.ResultDatabases)
-            {
-                //new SqlServerBenchmarkResultProcessor(database).SaveSummary(runSummary);
-            }
+            Console.WriteLine(runSummary.ToString());
 
             return runSummary;
         }
