@@ -1,6 +1,8 @@
 ﻿
 using Microsoft.AspNet.Builder;
 using Microsoft.Framework.DependencyInjection;
+using Microsoft.Framework.Logging;
+using Microsoft.Framework.Logging.Console;
 
 namespace BasicViews
 {
@@ -11,8 +13,9 @@ namespace BasicViews
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, ILoggerFactory logger)
         {
+            logger.AddProvider(new ConsoleLoggerProvider((s, l) => true));
             app.UseMvcWithDefaultRoute();
         }
     }
