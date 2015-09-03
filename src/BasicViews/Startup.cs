@@ -15,7 +15,7 @@ namespace BasicViews
 
         public void Configure(IApplicationBuilder app, ILoggerFactory logger)
         {
-            logger.AddProvider(new ConsoleLoggerProvider((s, l) => true));
+            //logger.AddProvider(new ConsoleLoggerProvider((s, l) => true));
             app.UseMvcWithDefaultRoute();
         }
     }

@@ -13,7 +13,7 @@ namespace BasicViews.Controllers
         [HttpPost]
         public IActionResult Index(Person person)
         {
-            return View();
+            return View(person);
         }
     }
 }

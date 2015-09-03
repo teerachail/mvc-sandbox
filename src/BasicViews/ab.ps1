@@ -1,1 +1,1 @@
-& ab -k -n 15000 -c 8 -T "application/x-www-url-formencoded" -p "./wwwroot/valid.txt" http://127.0.0.1:5001/
+& ab -k -n 15000 -c 8 -T "application/x-www-url-formencoded" -p "./wwwroot/valid.txt" http://127.0.0.1:5000/
