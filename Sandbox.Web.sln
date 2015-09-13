@@ -6,8 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2409D606-2BE4-41F5-9BF9-28C02B0CA771}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
-		Performance1.psess = Performance1.psess
-		Performance2.psess = Performance2.psess
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C1CF57EF-216D-4291-85E9-979446049D6D}"
