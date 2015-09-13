@@ -22,7 +22,7 @@ namespace MvcBenchmarks.InMemory
 
         private static readonly byte[] ValidBytes = new UTF8Encoding(false).GetBytes("name=Joey&age=15&birthdate=9-9-1985");
 
-        [Benchmark(DisplayName = "Basic Model Binding and View", Iterations = 10000, WarmupIterations = 20)]
+        //[Benchmark(DisplayName = "Basic Model Binding and View", Iterations = 10000, WarmupIterations = 20)]
         public async Task BasicViews_ValidInput()
         {
             var request = new HttpRequestMessage(HttpMethod.Post, "/");

@@ -2,7 +2,7 @@
 
 namespace Microsoft.Framework.MemoryPool
 {
-    public sealed class LeasedArraySegment<T> : ILeasedLifetime
+    public class LeasedArraySegment<T> : ILeasedLifetime
     {
         public LeasedArraySegment(ArraySegment<T> data, IArraySegmentPool<T> owner)
         {
@@ -17,16 +17,6 @@ namespace Microsoft.Framework.MemoryPool
         void ILeasedLifetime.Destroy()
         {
             Owner = null;
-        }
-
-        ~LeasedArraySegment()
-        {
-            if (Owner == null)
-            {
-                return;
-            }
-
-            throw new InvalidOperationException("You shunna dun that!");
         }
     }
 }
