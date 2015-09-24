@@ -4,12 +4,13 @@
 
   "dependencies": {
     "Microsoft.AspNet.Mvc": "6.0.0-*",
-    "Microsoft.AspNet.Server.IIS": "1.0.0-*",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNet.Server.WebListener": "1.0.0-*"
   },
 
   "commands": {
-    "web": "Microsoft.AspNet.Hosting --config hosting.ini"
+    "kestrel": "Microsoft.AspNet.Hosting --config hosting.json",
+    "web": "Microsoft.AspNet.Hosting --config hosting.json --server Microsoft.AspNet.Server.WebListener"
   },
 
   "frameworks": {

@@ -5,13 +5,12 @@
   "dependencies": {
     "Microsoft.AspNet.Mvc": "6.0.0-*",
     "Microsoft.AspNet.Server.Kestrel": "1.0.0-*",
-    "Microsoft.AspNet.Server.WebListener": "1.0.0-*",
-    "Microsoft.Framework.Logging.Console": "1.0.0-*"
+    "Microsoft.AspNet.Server.WebListener": "1.0.0-*"
   },
 
   "commands": {
-    "kestrel": "Microsoft.AspNet.Hosting server=Microsoft.AspNet.Server.Kestrel --config hosting.json",
-    "web": "Microsoft.AspNet.Hosting --config hosting.json"
+    "kestrel": "Microsoft.AspNet.Hosting --config hosting.json",
+    "web": "Microsoft.AspNet.Hosting --config hosting.json --server Microsoft.AspNet.Server.WebListener"
   },
 
   "frameworks": {

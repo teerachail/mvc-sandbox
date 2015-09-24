@@ -1,29 +1,30 @@
 ﻿{
-    "webroot": "wwwroot",
-    "version": "1.0.0-*",
+  "webroot": "wwwroot",
+  "version": "1.0.0-*",
 
-    "dependencies": {
-        "Microsoft.AspNet.Mvc": "6.0.0-*",
-        "Microsoft.AspNet.Server.IIS": "1.0.0-*",
-        "Microsoft.AspNet.Server.WebListener": "1.0.0-*"
-    },
+  "dependencies": {
+    "Microsoft.AspNet.Mvc": "6.0.0-*",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-*",
+    "Microsoft.AspNet.Server.WebListener": "1.0.0-*"
+  },
 
-    "commands": {
-        "web": "Microsoft.AspNet.Hosting --config hosting.ini"
-    },
+  "commands": {
+    "kestrel": "Microsoft.AspNet.Hosting --config hosting.json",
+    "web": "Microsoft.AspNet.Hosting --config hosting.json --server Microsoft.AspNet.Server.WebListener"
+  },
 
-    "frameworks": {
-        "dnx451": {
-            "frameworkAssemblies": {
-                "System.ComponentModel.DataAnnotations": ""
-            }
-        },
-        "dnxcore50": {
-            "dependencies": {
-                "System.ComponentModel.Annotations": "4.0.10-beta-*"
-            }
-        }
+  "frameworks": {
+    "dnx451": {
+      "frameworkAssemblies": {
+        "System.ComponentModel.DataAnnotations": ""
+      }
     },
+    "dnxcore50": {
+      "dependencies": {
+        "System.ComponentModel.Annotations": "4.0.10-beta-*"
+      }
+    }
+  },
 
   "publishExclude": [
     "node_modules",
