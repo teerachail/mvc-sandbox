@@ -13,12 +13,6 @@ namespace MvcBenchmarks.InMemory
     public class MemoryPoolTest
     {
         [Theory]
-        [InlineData(typeof(AllocatingArraySegmentPool<>))]
-        [InlineData(typeof(NaiveConcurrentQueueArraySegmentPool<>))]
-        [InlineData(typeof(NaiveTLSConcurrentQueueArraySegmentPool<>))]
-        [InlineData(typeof(RoundRobinCASArraySegmentPool<>))]
-        [InlineData(typeof(RoundRobinLockArraySegmentPool<>))]
-        [InlineData(typeof(RoundRobinConcurrentQueueArraySegmentPool<>))]
         public void AllocatingPool(Type type)
         {
             Console.WriteLine($"Benchmarking {type} with Threads");

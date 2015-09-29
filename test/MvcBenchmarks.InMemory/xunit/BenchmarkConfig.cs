@@ -12,7 +12,7 @@ namespace MvcBenchmarks
     {
         private static Lazy<BenchmarkConfig> _instance = new Lazy<BenchmarkConfig>(() =>
         {
-            var config = new ConfigurationBuilder(".")
+            var config = new ConfigurationBuilder()
                 .AddJsonFile("config.json")
                 .AddEnvironmentVariables()
                 .Build();

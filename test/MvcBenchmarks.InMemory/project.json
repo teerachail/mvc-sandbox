@@ -11,7 +11,7 @@
     "Microsoft.Framework.Configuration.EnvironmentVariables": "1.0.0-*",
     "Microsoft.Framework.Configuration.Json": "1.0.0-*",
     "Microsoft.Framework.DependencyInjection.Abstractions": "1.0.0-*",
-    "Microsoft.Framework.MemoryPool": "",
+    "Microsoft.Framework.MemoryPool": "1.0.0-*",
     "System.Net.Http": "4.0.1-beta-*",
     "xunit.runner.aspnet": "2.0.0-aspnet-*"
   },
