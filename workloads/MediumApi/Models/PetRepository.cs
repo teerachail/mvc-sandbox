@@ -45,5 +45,19 @@ namespace MediumApi.Models
         {
             // Do nothing
         }
+
+        public Pet FindPet(int id)
+        {
+            for (var i = 0; i < Pets.Count; i++)
+            {
+                var pet = Pets[i];
+                if (pet.Id == id)
+                {
+                    return pet;
+                }
+            }
+
+            return null;
+        }
     }
 }

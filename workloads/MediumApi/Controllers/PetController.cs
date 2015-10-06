@@ -18,7 +18,13 @@ namespace MediumApi.Controllers
         [HttpGet("{id}", Name = "FindPetById")]
         public IActionResult FindById(int id)
         {
-            throw new NotImplementedException();
+            var pet = Repository.FindPet(id);
+            if (pet == null)
+            {
+                return new HttpNotFoundResult();
+            }
+
+            return new ObjectResult(pet);
         }
 
         [HttpGet("findByStatus")]
