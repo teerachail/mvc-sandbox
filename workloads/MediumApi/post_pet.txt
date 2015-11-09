@@ -1,4 +1,4 @@
-﻿{
+{
   "category" : {
     "id" : 2,
     "name" : "Cats"
