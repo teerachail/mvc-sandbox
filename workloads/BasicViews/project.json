@@ -4,6 +4,8 @@
 
   "dependencies": {
     "Microsoft.AspNet.Mvc": "6.0.0-*",
+    "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-*",
+    "Microsoft.AspNet.Tooling.Razor": "1.0.0-*",
     "Microsoft.AspNet.Server.Kestrel": "1.0.0-*",
     "Microsoft.AspNet.Server.WebListener": "1.0.0-*"
   },
