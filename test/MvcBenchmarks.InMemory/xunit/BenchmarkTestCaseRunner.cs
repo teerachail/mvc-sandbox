@@ -8,11 +8,9 @@ using System.Threading.Tasks;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 using System.Diagnostics;
+using Microsoft.Extensions.PlatformAbstractions;
 
 #if DNXCORE50 || DNX451
-using Microsoft.Framework.Configuration;
-using Microsoft.Dnx.Runtime;
-using Microsoft.Dnx.Runtime.Infrastructure;
 using XunitDiagnosticMessage = Xunit.DiagnosticMessage;
 #else
 using XunitDiagnosticMessage = Xunit.Sdk.DiagnosticMessage;
@@ -116,9 +114,7 @@ namespace MvcBenchmarks
         private static string GetFramework()
         {
 #if DNX451 || DNXCORE50
-            var services = CallContextServiceLocator.Locator.ServiceProvider; 
-            var env = (IRuntimeEnvironment)services.GetService(typeof(IRuntimeEnvironment)); 
-            return "DNX." + env.RuntimeType;
+            return "DNX." + PlatformServices.Default.Runtime.RuntimeType;
 #else
             return ".NETFramework";
 #endif

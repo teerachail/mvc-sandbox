@@ -3,9 +3,9 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.Versioning;
 using Microsoft.AspNet.Hosting;
-using Microsoft.Dnx.Runtime;
-using Microsoft.Dnx.Runtime.Infrastructure;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace MvcBenchmarks.InMemory
 {
@@ -13,14 +13,13 @@ namespace MvcBenchmarks.InMemory
     {
         public static Action<IServiceCollection> InitializeServices(Type startup, Action<IServiceCollection> next)
         {
-            var applicationServices = CallContextServiceLocator.Locator.ServiceProvider;
-            var libraryManager = applicationServices.GetRequiredService<ILibraryManager>();
+            var libraryManager = PlatformServices.Default.LibraryManager;
 
             var applicationName = startup.GetTypeInfo().Assembly.GetName().Name;
             var library = libraryManager.GetLibrary(applicationName);
             var applicationRoot = Path.GetDirectoryName(library.Path);
 
-            var applicationEnvironment = applicationServices.GetRequiredService<IApplicationEnvironment>();
+            var applicationEnvironment = PlatformServices.Default.Application;
 
             var configureServices = startup.GetMethod("ConfigureServices");
 
@@ -29,7 +28,10 @@ namespace MvcBenchmarks.InMemory
                 services.AddInstance<IApplicationEnvironment>(new TestApplicationEnvironment(applicationEnvironment, applicationName, applicationRoot));
 
                 var hostingEnvironment = new HostingEnvironment();
-                hostingEnvironment.Initialize(applicationRoot, "Production");
+                hostingEnvironment.Initialize(applicationRoot, new WebHostOptions()
+                {
+                    Environment = "Production",
+                });
                 services.AddInstance<IHostingEnvironment>(new HostingEnvironment());
                 next(services);
             };

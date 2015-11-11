@@ -2,7 +2,7 @@
 using BigModelBinding.Controllers;
 using BigModelBinding.Models;
 using Microsoft.AspNet.Builder;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BigModelBinding
 {

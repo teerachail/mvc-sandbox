@@ -3,9 +3,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNet.WebUtilities;
-using Microsoft.Framework.MemoryPool;
+using Microsoft.Extensions.MemoryPool;
 using Xunit;
 
 namespace MvcBenchmarks.InMemory
