@@ -11,10 +11,10 @@ namespace MediumApi
         {
             services
                 .AddMvcCore()
-                .AddJsonFormatters(json => json.ContractResolver = new DefaultContractResolver(true))
+                .AddJsonFormatters(json => json.ContractResolver = new DefaultContractResolver())
                 .AddDataAnnotations();
 
-            services.AddInstance<PetRepository>(new PetRepository());
+            services.AddSingleton<PetRepository>(new PetRepository());
         }
 
         public void Configure(IApplicationBuilder app)
