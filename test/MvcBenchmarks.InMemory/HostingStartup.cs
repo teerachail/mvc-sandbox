@@ -3,7 +3,6 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.Versioning;
 using Microsoft.AspNet.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 
@@ -25,14 +24,14 @@ namespace MvcBenchmarks.InMemory
 
             return (services) =>
             {
-                services.AddInstance<IApplicationEnvironment>(new TestApplicationEnvironment(applicationEnvironment, applicationName, applicationRoot));
+                services.AddSingleton<IApplicationEnvironment>(new TestApplicationEnvironment(applicationEnvironment, applicationName, applicationRoot));
 
                 var hostingEnvironment = new HostingEnvironment();
                 hostingEnvironment.Initialize(applicationRoot, new WebHostOptions()
                 {
                     Environment = "Production",
                 });
-                services.AddInstance<IHostingEnvironment>(new HostingEnvironment());
+                services.AddSingleton<IHostingEnvironment>(new HostingEnvironment());
                 next(services);
             };
         }
