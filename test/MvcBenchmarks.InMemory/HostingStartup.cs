@@ -27,11 +27,15 @@ namespace MvcBenchmarks.InMemory
                 services.AddSingleton<IApplicationEnvironment>(new TestApplicationEnvironment(applicationEnvironment, applicationName, applicationRoot));
 
                 var hostingEnvironment = new HostingEnvironment();
-                hostingEnvironment.Initialize(applicationRoot, new WebHostOptions()
-                {
-                    Environment = "Production",
-                });
-                services.AddSingleton<IHostingEnvironment>(new HostingEnvironment());
+                hostingEnvironment.Initialize(
+                    applicationRoot,
+                    new WebHostOptions
+                    {
+                        Environment = "Production",
+                    },
+                    configuration: null);
+
+                services.AddSingleton<IHostingEnvironment>(hostingEnvironment);
                 next(services);
             };
         }
