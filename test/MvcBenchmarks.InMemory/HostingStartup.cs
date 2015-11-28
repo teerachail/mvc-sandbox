@@ -58,19 +58,7 @@ namespace MvcBenchmarks.InMemory
 
             public string ApplicationVersion => _original.ApplicationVersion;
 
-            public string Configuration => _original.Configuration;
-
             public FrameworkName RuntimeFramework => _original.RuntimeFramework;
-
-            public object GetData(string name)
-            {
-                return _original.GetData(name);
-            }
-
-            public void SetData(string name, object value)
-            {
-                _original.SetData(name, value);
-            }
         }
     }
 }
