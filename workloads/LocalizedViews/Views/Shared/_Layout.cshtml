@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Localizer.Html("MVC with views")</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <p>@Localizer.Html("Hello {0}!", Component.Invoke("CurrentUser"))</p>
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <environment names="Development">
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+</body>
+</html>
