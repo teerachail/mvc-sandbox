@@ -13,7 +13,8 @@
 
   "commands": {
     "kestrel": "Microsoft.AspNet.Hosting --config hosting.json",
-    "web": "Microsoft.AspNet.Hosting --config hosting.json --server Microsoft.AspNet.Server.WebListener"
+    "weblistener": "Microsoft.AspNet.Hosting --config hosting.json --server Microsoft.AspNet.Server.WebListener",
+    "web": "Microsoft.AspNet.Server.Kestrel"
   },
 
   "frameworks": {

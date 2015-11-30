@@ -8,7 +8,8 @@
   },
 
   "commands": {
-    "kestrel": "Microsoft.AspNet.Server.Kestrel"
+    "kestrel": "Microsoft.AspNet.Hosting --config hosting.json",
+    "web": "Microsoft.AspNet.Server.Kestrel"
   },
 
   "frameworks": {
