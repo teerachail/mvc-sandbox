@@ -1,6 +1,10 @@
 {
-  "webroot": "wwwroot",
   "version": "1.0.0-*",
+
+  "compilationOptions": {
+    "emitEntryPoint": true,
+    "warningsAsErrors": true
+  },
 
   "dependencies": {
     "Microsoft.AspNet.Mvc.Core": "6.0.0-*",
@@ -11,8 +15,7 @@
   },
 
   "commands": {
-    "kestrel": "Microsoft.AspNet.Hosting --config hosting.json",
-    "web": "Microsoft.AspNet.Server.Kestrel"
+    "web": "MediumApi"
   },
 
   "frameworks": {
@@ -25,6 +28,7 @@
     "node_modules",
     "bower_components"
   ],
+
   "publishExclude": [
     "**.user",
     "**.vspscc"

@@ -1,6 +1,10 @@
 ﻿{
-  "webroot": "wwwroot",
   "version": "1.0.0-*",
+  
+  "compilationOptions": {
+    "emitEntryPoint": true,
+    "warningsAsErrors": true
+  },
 
   "dependencies": {
     "Microsoft.AspNet.Mvc": "6.0.0-*",
@@ -9,9 +13,7 @@
   },
 
   "commands": {
-    "kestrel": "Microsoft.AspNet.Hosting --config hosting.json",
-    "weblistener": "Microsoft.AspNet.Hosting --config hosting.json --server Microsoft.AspNet.Server.WebListener",
-    "web": "Microsoft.AspNet.Server.Kestrel"
+    "web": "BigViews"
   },
 
   "frameworks": {
@@ -26,6 +28,7 @@
     "**.user",
     "**.vspscc"
   ],
+
   "exclude": [
     "wwwroot",
     "node_modules",

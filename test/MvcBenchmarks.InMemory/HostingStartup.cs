@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.Versioning;
 using Microsoft.AspNet.Hosting;
+using Microsoft.AspNet.Hosting.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 
@@ -29,7 +30,7 @@ namespace MvcBenchmarks.InMemory
                 var hostingEnvironment = new HostingEnvironment();
                 hostingEnvironment.Initialize(
                     applicationRoot,
-                    new WebHostOptions
+                    new WebApplicationOptions
                     {
                         Environment = "Production",
                     },

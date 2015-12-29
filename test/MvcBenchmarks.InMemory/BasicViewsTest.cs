@@ -1,26 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
+using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.TestHost;
-using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace MvcBenchmarks.InMemory
 {
     public class BasicViewsTest
     {
-        private static readonly BasicViews.Startup Startup = new BasicViews.Startup();
-        private static readonly Action<IServiceCollection> ConfigureServices = Startup.ConfigureServices;
-        private static readonly Action<IApplicationBuilder> Configure = Startup.Configure;
-
-        private static readonly TestServer Server = TestServer.Create(Configure, HostingStartup.InitializeServices(Startup.GetType(), ConfigureServices));
-        private static readonly HttpClient Client = Server.CreateClient();
+        private static readonly TestServer Server;
+        private static readonly HttpClient Client;
 
         private static readonly byte[] ValidBytes = new UTF8Encoding(false).GetBytes("name=Joey&age=15&birthdate=9-9-1985");
+
+        static BasicViewsTest()
+        {
+            var builder = new WebApplicationBuilder();
+            builder.UseStartup<BasicViews.Startup>();
+            Server = new TestServer(builder);
+            Client = Server.CreateClient();
+        }
 
         //[Benchmark(DisplayName = "Basic Model Binding and View", Iterations = 10000, WarmupIterations = 20)]
         public async Task BasicViews_ValidInput()
