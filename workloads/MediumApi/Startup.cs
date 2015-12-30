@@ -12,7 +12,7 @@ namespace MediumApi
         {
             services
                 .AddMvcCore()
-                .AddJsonFormatters(json => json.ContractResolver = new DefaultContractResolver())
+                .AddJsonFormatters(json => json.ContractResolver = new CamelCasePropertyNamesContractResolver())
                 .AddDataAnnotations();
 
             services.AddSingleton<PetRepository>(new PetRepository());
