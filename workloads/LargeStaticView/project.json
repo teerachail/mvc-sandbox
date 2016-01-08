@@ -12,7 +12,7 @@
   },
 
   "commands": {
-    "web": "LargeStaticViews"
+    "web": "LargeStaticView"
   },
 
   "frameworks": {
