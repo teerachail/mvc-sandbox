@@ -15,7 +15,7 @@
     </environment>
 </head>
 <body>
-    <p>Hello @Component.Invoke("CurrentUser")!</p>
+    <p>Hello @await Component.InvokeAsync("CurrentUser")!</p>
 
     <div>
         @RenderBody()
