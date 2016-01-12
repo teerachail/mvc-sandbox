@@ -1,30 +1,31 @@
 ﻿@using BigViews
+@addTagHelper *, Microsoft.AspNet.Mvc.TagHelpers
 @model User
 
 <div class="contact-card">
     <strong>@Model.FirstName @Model.LastName</strong>
     <br />
 
-    @Html.LabelFor(m => m.HomePhone)
+    <label asp-for="HomePhone"></label>
     <b id="@Html.IdFor(m => m.HomePhone)">@Model.HomePhone</b>
     <br />
 
-    @Html.LabelFor(m => m.Mobile)
+    <label asp-for="Mobile"></label>
     <b id="@Html.IdFor(m => m.Mobile)">@Model.Mobile</b>
     <br />
 
-    @Html.LabelFor(m => m.MailId)
+    <label asp-for="MailId"></label>
     <b id="@Html.IdFor(m => m.MailId)">@Model.MailId</b>
     <br />
 
-    @Html.LabelFor(m => m.CurrentJob)
+    <label asp-for="CurrentJob"></label>
     <b id="@Html.IdFor(m => m.CurrentJob)">@Model.CurrentJob</b>
     <br />
 
-    @Html.LabelFor(m => m.PastJobs)
+    <label asp-for="PastJobs"></label>
     <br />
-    @Html.ListBoxFor(m => m.PastJobs, BigViews.User.PastJobSelections, htmlAttributes: new { disabled = "disabled" })
+    <select asp-for="PastJobs" asp-items="BigViews.User.PastJobSelections" disabled="disabled"></select>
     <br />
 
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MailId })
+    <a asp-action="Edit" asp-controller="Edit" asp-route-id="Model.MailId"></a>
 </div>

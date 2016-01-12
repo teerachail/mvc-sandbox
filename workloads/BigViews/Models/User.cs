@@ -5,37 +5,28 @@ namespace BigViews
 {
     public class User
     {
-        public static readonly List<User> StaticUsers;
-
-        static User()
+        public static IList<string> AvailableJobs { get; } = new List<string>
         {
-            var pastJobs = new List<string>();
-            for (var i = 0; i < 10; i++)
-            {
-                pastJobs.Add("hello");
-                pastJobs.Add("world");
-            }
+            "Construction Foreman",
+            "Apprentice Carpenter",
+            "Journeyman Carpenter",
+            "Master Carpenter",
+            "Apprentice Electrician",
+            "Journeyman Electrician",
+            "Master Electrician",
+            "Apprentice Mason",
+            "Journeyman Mason",
+            "Master Mason",
+            "Apprentice Plumber",
+            "Journeyman Plumber",
+            "Master Plumber",
+        };
 
-            StaticUsers = new List<User>();
-            for (var i = 0; i < 50; i++)
-            {
-                StaticUsers.Add(new User
-                {
-                    FirstName = "Simple",
-                    LastName = "User",
-                    HomePhone = "81275-912854-1",
-                    Mobile = "18295710923",
-                    MailId = "something@something.com",
-                    CurrentJob = "Some Random Job",
-                    PastJobs = new SelectList(pastJobs)
-                });
-            }
-        }
+        // A newly-created User (i.e. in a Create view) does not have an assigned job.
+        public static IEnumerable<SelectListItem> JobSelections { get; } = new SelectList(AvailableJobs);
 
-        public User()
-        {
-            PastJobs = new List<SelectListItem>();
-        }
+        // A newly-created User (i.e. in a Create view) does not have any past jobs.
+        public static IEnumerable<SelectListItem> PastJobSelections { get; } = new MultiSelectList(AvailableJobs);
 
         public string FirstName { get; set; }
 
@@ -49,6 +40,6 @@ namespace BigViews
 
         public string CurrentJob { get; set; }
 
-        public IEnumerable<SelectListItem> PastJobs { get; set; }
+        public IList<string> PastJobs { get; set; } = new List<string>();
     }
 }
