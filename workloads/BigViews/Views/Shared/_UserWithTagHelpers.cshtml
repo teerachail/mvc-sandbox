@@ -27,5 +27,5 @@
     <select asp-for="PastJobs" asp-items="BigViews.User.PastJobSelections" disabled="disabled"></select>
     <br />
 
-    <a asp-action="Edit" asp-controller="Edit" asp-route-id="Model.MailId"></a>
+    <a asp-action="Edit" asp-controller="Home" asp-route-id="@Model.MailId">Edit</a>
 </div>

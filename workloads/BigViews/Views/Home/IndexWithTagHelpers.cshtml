@@ -20,7 +20,7 @@
             // RenderPartialAsync() does not have enough information to determine full names correctly. Help it out.
             ViewData.TemplateInfo.HtmlFieldPrefix = Html.NameFor(m => m[i]);
 
-            await Html.RenderPartialAsync("_User", Model[i]);
+            await Html.RenderPartialAsync("_UserWithTagHelpers", Model[i]);
 
             ViewData.TemplateInfo.HtmlFieldPrefix = savePrefix;
         }
