@@ -44,6 +44,13 @@ namespace BigViews
             return View(_users.Values.ToArray());
         }
 
+        public IActionResult IndexWithStaticOptions()
+        {
+            // In a more realistic scenario, may have many more users. But would likely display details of only 10 or
+            // so at once.
+            return View(_users.Values.ToArray());
+        }
+
         public IActionResult IndexWithTagHelpers()
         {
             // In a more realistic scenario, may have many more users. But would likely display details of only 10 or
