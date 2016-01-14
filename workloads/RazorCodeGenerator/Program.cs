@@ -19,9 +19,15 @@ namespace RazorCodeGenerator
 
                 Console.WriteLine($"Starting Code Generation: {args[0]}");
                 var timer = Stopwatch.StartNew();
-                GenerateCodeFile(Path.GetFullPath(args[0]), "Test");
+                var iterations = 15;
+                if (args.Length > 1)
+                {
+                    iterations = int.Parse(args[1]);
+                }
+
+                GenerateCodeFile(Path.GetFullPath(args[0]), "Test", iterations);
                 Console.WriteLine($"Completed after {timer.Elapsed}");
-                
+
                 Console.WriteLine("Press the ANY key to exit.");
                 Console.ReadLine();
                 return 0;
@@ -33,7 +39,7 @@ namespace RazorCodeGenerator
             }
         }
 
-        private static void GenerateCodeFile(string file, string @namespace)
+        private static void GenerateCodeFile(string file, string @namespace, int iterations)
         {
             var basePath = Path.GetDirectoryName(file);
             var fileName = Path.GetFileName(file);
@@ -44,15 +50,18 @@ namespace RazorCodeGenerator
             var host = new MvcRazorHost(new DefaultChunkTreeCache(new PhysicalFileProvider(basePath)));
             var engine = new RazorTemplateEngine(host);
 
-            using (var fileStream = File.OpenText(file))
+            for (var i = 0; i < iterations; i++)
             {
-                var code = engine.GenerateCode(
-                    input: fileStream,
-                    className: fileNameNoExtension,
-                    rootNamespace: Path.GetFileName(@namespace),
-                    sourceFileName: fileName);
+                using (var fileStream = File.OpenText(file))
+                {
+                    var code = engine.GenerateCode(
+                        input: fileStream,
+                        className: fileNameNoExtension,
+                        rootNamespace: Path.GetFileName(@namespace),
+                        sourceFileName: fileName);
+                }
 
-                File.WriteAllText(Path.Combine(basePath, string.Format("{0}.cs", fileNameNoExtension)), code.GeneratedCode);
+                Console.WriteLine("Completed iteration: " + (i + 1));
             }
         }
     }
