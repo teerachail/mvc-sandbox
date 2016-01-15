@@ -14,11 +14,6 @@ namespace RazorCodeGenerator
         {
             if (args.Length > 0 && File.Exists(args[0]))
             {
-                Console.WriteLine("Press the ANY key to start.");
-                Console.ReadLine();
-
-                Console.WriteLine($"Starting Code Generation: {args[0]}");
-                var timer = Stopwatch.StartNew();
                 var iterations = 15;
                 if (args.Length > 1)
                 {
@@ -26,7 +21,6 @@ namespace RazorCodeGenerator
                 }
 
                 GenerateCodeFile(Path.GetFullPath(args[0]), "Test", iterations);
-                Console.WriteLine($"Completed after {timer.Elapsed}");
 
                 Console.WriteLine("Press the ANY key to exit.");
                 Console.ReadLine();
@@ -50,6 +44,11 @@ namespace RazorCodeGenerator
             var host = new MvcRazorHost(new DefaultChunkTreeCache(new PhysicalFileProvider(basePath)));
             var engine = new RazorTemplateEngine(host);
 
+            Console.WriteLine("Press the ANY key to start.");
+            Console.ReadLine();
+
+            Console.WriteLine($"Starting Code Generation: {file}");
+            var timer = Stopwatch.StartNew();
             for (var i = 0; i < iterations; i++)
             {
                 using (var fileStream = File.OpenText(file))
@@ -63,6 +62,7 @@ namespace RazorCodeGenerator
 
                 Console.WriteLine("Completed iteration: " + (i + 1));
             }
+            Console.WriteLine($"Completed after {timer.Elapsed}");
         }
     }
 }
