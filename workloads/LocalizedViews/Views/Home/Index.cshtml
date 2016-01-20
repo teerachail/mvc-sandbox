@@ -1,7 +1,7 @@
 ﻿@using BasicViews
 @model Person
 
-@Html.ValidationSummary(message: Localizer["Validation issues:"])
+@Html.ValidationSummary(message: Localizer["Validation issues:"].Value)
 
 @using (Html.BeginForm())
 {
@@ -17,7 +17,7 @@
         @Html.LabelFor(p => p.BirthDate)
         @Html.EditorFor(p => p.BirthDate)
     </div>
-    <input type="submit" value="@Localizer.Html("Submit")" />
+    <input type="submit" value="@Localizer["Submit"]" />
 
     @Html.AntiForgeryToken()
 }

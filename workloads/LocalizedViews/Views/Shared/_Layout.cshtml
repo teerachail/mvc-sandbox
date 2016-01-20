@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using BasicViews.Components
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@Localizer.Html("MVC with views")</title>
+    <title>@Localizer["MVC with views"]</title>
 
     <environment names="Development">
         <link rel="stylesheet" href="~/css/site.css" />
@@ -15,7 +16,7 @@
     </environment>
 </head>
 <body>
-    <p>@Localizer.Html("Hello {0}!", Component.Invoke("CurrentUser"))</p>
+    <p>@Localizer["Hello {0}!", await Component.InvokeAsync<CurrentUser>()]</p>
 
     <div>
         @RenderBody()

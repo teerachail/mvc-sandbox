@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Hello {0}!" xml:space="preserve">
-    <value>How's it goin', eh {0}!!</value>
-  </data>
-  <data name="MVC with views" xml:space="preserve">
-    <value>Good day, I'm Bob McKenzie, this is my brother Doug.</value>
-  </data>
   <data name="Submit" xml:space="preserve">
     <value>So like, take off</value>
   </data>
