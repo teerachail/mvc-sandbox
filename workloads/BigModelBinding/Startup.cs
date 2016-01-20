@@ -23,8 +23,8 @@ namespace BigModelBinding
 
         public static void Main(string[] args)
         {
-            var application = new WebApplicationBuilder()
-                .UseConfiguration(WebApplicationConfiguration.GetDefault(args))
+            var application = new WebHostBuilder()
+                .UseConfiguration(WebHostConfiguration.GetDefault(args))
                 .UseStartup<Startup>()
                 .Build();
 

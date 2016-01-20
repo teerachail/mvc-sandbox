@@ -30,7 +30,7 @@ namespace MvcBenchmarks.InMemory
                 var hostingEnvironment = new HostingEnvironment();
                 hostingEnvironment.Initialize(
                     applicationRoot,
-                    new WebApplicationOptions
+                    new WebHostOptions
                     {
                         Environment = "Production",
                     },

@@ -18,11 +18,12 @@ namespace BasicViews
         public void Configure(IApplicationBuilder app)
         {
             // Default to en-CA locale and make sure nothing overrides that choice.
-            app.UseRequestLocalization(options =>
+            var options = new RequestLocalizationOptions
             {
-                options.DefaultRequestCulture = new RequestCulture("en-CA");
-                options.RequestCultureProviders.Clear();
-            });
+                DefaultRequestCulture = new RequestCulture("en-CA"),
+            };
+            options.RequestCultureProviders.Clear();
+            app.UseRequestLocalization(options);
 
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
@@ -30,8 +31,8 @@ namespace BasicViews
 
         public static void Main(string[] args)
         {
-            var application = new WebApplicationBuilder()
-                .UseConfiguration(WebApplicationConfiguration.GetDefault(args))
+            var application = new WebHostBuilder()
+                .UseConfiguration(WebHostConfiguration.GetDefault(args))
                 .UseStartup<Startup>()
                 .Build();
 
