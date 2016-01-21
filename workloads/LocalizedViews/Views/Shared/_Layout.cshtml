@@ -1,5 +1,4 @@
-﻿@using BasicViews.Components
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
@@ -16,7 +15,7 @@
     </environment>
 </head>
 <body>
-    <p>@Localizer["Hello {0}!", await Component.InvokeAsync<CurrentUser>()]</p>
+    <p>@Localizer["Hello {0}!", await Component.InvokeAsync("CurrentUser")]</p>
 
     <div>
         @RenderBody()
