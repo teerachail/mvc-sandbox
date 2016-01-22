@@ -9,5 +9,10 @@ namespace BasicViews.Controllers
         {
             return View(person);
         }
+
+        public IActionResult SuppressAntiforgery(Person person)
+        {
+            return View(person);
+        }
     }
 }
