@@ -13,7 +13,8 @@ namespace MvcBenchmarks.InMemory
     {
         public static Action<IServiceCollection> InitializeServices(Type startup, Action<IServiceCollection> next)
         {
-            var libraryManager = PlatformServices.Default.LibraryManager;
+
+            var libraryManager = DnxPlatformServices.Default.LibraryManager;
 
             var applicationName = startup.GetTypeInfo().Assembly.GetName().Name;
             var library = libraryManager.GetLibrary(applicationName);

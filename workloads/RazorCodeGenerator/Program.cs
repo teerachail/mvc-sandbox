@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using Microsoft.AspNet.FileProviders;
-using Microsoft.AspNet.Mvc.Razor;
-using Microsoft.AspNet.Mvc.Razor.Directives;
-using Microsoft.AspNet.Razor;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Mvc.Razor.Directives;
+using Microsoft.AspNetCore.Razor;
+using Microsoft.Extensions.FileProviders;
 
 namespace RazorCodeGenerator
 {
