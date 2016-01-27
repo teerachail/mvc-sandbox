@@ -1,6 +1,6 @@
 ﻿
-using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace HelloWorldMvc.Controllers
 {

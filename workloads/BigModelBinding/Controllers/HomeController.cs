@@ -1,7 +1,7 @@
 ﻿
 using System.Threading.Tasks;
 using BigModelBinding.Models;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BigModelBinding.Controllers
 {

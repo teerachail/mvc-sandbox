@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.MemoryPool;
 
-namespace Microsoft.AspNet.WebUtilities
+namespace Microsoft.AspNetCore.WebUtilities
 {
     /// <summary>
     /// Writes to the <see cref="Stream"/> using the supplied <see cref="Encoding"/>.

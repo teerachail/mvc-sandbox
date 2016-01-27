@@ -1,7 +1,7 @@
 ﻿
 using System;
-using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
 namespace BasicModelBinding

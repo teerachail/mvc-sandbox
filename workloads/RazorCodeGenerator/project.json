@@ -6,7 +6,7 @@
   },
 
   "dependencies": {
-    "Microsoft.AspNet.Mvc.Razor": "6.0.0-*"
+    "Microsoft.AspNetCore.Mvc.Razor": "1.0.0-*"
   },
 
   "commands": {
