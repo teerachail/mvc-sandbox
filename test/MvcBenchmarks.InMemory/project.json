@@ -6,12 +6,21 @@
   },
   "dependencies": {
     "BasicViews": "",
+    "BigModelBinding": "",
+    "BigViews": "",
+    "HelloWorldMiddleware": "",
+    "HelloWorldMvc": "",
+    "LargeContentMiddleware": "",
+    "LargeStaticView": "",
+    "LocalizedViews": "",
+    "MediumApi": "",
+    "RazorCodeGenerator": "",
+
     "Microsoft.AspNetCore.TestHost": "1.0.0-*",
     "Microsoft.Extensions.Configuration": "1.0.0-*",
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-*",
     "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
     "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-*",
-    "Microsoft.Extensions.MemoryPool": "1.0.0-*",
     "System.Net.Http": "4.0.1-beta-*",
     "xunit.runner.aspnet": "2.0.0-aspnet-*"
   },

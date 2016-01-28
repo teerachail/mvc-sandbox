@@ -1,9 +1,10 @@
-﻿using System;
+﻿
 using System.IO;
 using System.Reflection;
 using System.Runtime.Versioning;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Internal;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 
@@ -11,35 +12,38 @@ namespace MvcBenchmarks.InMemory
 {
     public static class HostingStartup
     {
-        public static Action<IServiceCollection> InitializeServices(Type startup, Action<IServiceCollection> next)
+        public static WebHostBuilder UseProjectOf<TStartup>(this WebHostBuilder builder)
         {
-
             var libraryManager = DnxPlatformServices.Default.LibraryManager;
 
-            var applicationName = startup.GetTypeInfo().Assembly.GetName().Name;
+            var applicationName = typeof(TStartup).GetTypeInfo().Assembly.GetName().Name;
             var library = libraryManager.GetLibrary(applicationName);
-            var applicationRoot = Path.GetDirectoryName(library.Path);
+            var webRoot = Path.GetDirectoryName(library.Path);
 
-            var applicationEnvironment = PlatformServices.Default.Application;
-
-            var configureServices = startup.GetMethod("ConfigureServices");
-
-            return (services) =>
+            var assemblyProvider = new StaticAssemblyProvider();
+            assemblyProvider.CandidateAssemblies.Add(typeof(TStartup).Assembly);
+            builder.ConfigureServices(services =>
             {
-                services.AddSingleton<IApplicationEnvironment>(new TestApplicationEnvironment(applicationEnvironment, applicationName, applicationRoot));
+                var applicationEnvironment = new TestApplicationEnvironment(
+                    PlatformServices.Default.Application,
+                    applicationName,
+                    webRoot);
+                services.AddSingleton<IApplicationEnvironment>(applicationEnvironment);
 
                 var hostingEnvironment = new HostingEnvironment();
                 hostingEnvironment.Initialize(
-                    applicationRoot,
+                    webRoot,
                     new WebHostOptions
                     {
                         Environment = "Production",
                     },
                     configuration: null);
-
                 services.AddSingleton<IHostingEnvironment>(hostingEnvironment);
-                next(services);
-            };
+
+                services.AddSingleton<IAssemblyProvider>(assemblyProvider);
+            });
+
+            return builder;
         }
 
         private class TestApplicationEnvironment : IApplicationEnvironment

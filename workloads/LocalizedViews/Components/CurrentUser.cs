@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace BasicViews.Components
+namespace LocalizedViews.Components
 {
     public class CurrentUser : ViewComponent
     {

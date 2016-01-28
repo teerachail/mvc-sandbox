@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BasicViews
+namespace LocalizedViews
 {
     public class Person
     {

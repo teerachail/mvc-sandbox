@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 
-namespace BasicViews.Controllers
+namespace LocalizedViews.Controllers
 {
     public class HomeController : Controller
     {
