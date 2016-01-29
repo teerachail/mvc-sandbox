@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BigModelBinding.Models
 {
@@ -22,10 +23,10 @@ namespace BigModelBinding.Models
         public override int Id => EnrollmentServiceId;
         public int EnrollmentServiceId { get; set; }
         public int EnrollmentId { get; set; }
-        [Required(ErrorMessage = "Service is required.")]
+        [BindRequired]
         public int ServiceId { get; set; }
-        [Required(ErrorMessage = "Provider is required.")]
-        public int? ProviderId { get; set; }
+        [BindRequired]
+        public int ProviderId { get; set; }
         public virtual Enrollment Enrollment { get; set; }
         public virtual Service Service { get; set; }
         public virtual Provider Provider { get; set; }
@@ -50,7 +51,7 @@ namespace BigModelBinding.Models
     {
         public override int Id => ServiceId;
         public int ServiceId { get; set; }
-        [Required]
+        [BindRequired]
         public int ProgramId { get; set; }
         public string Code { get; set; }
         [Required]

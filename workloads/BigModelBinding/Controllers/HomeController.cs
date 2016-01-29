@@ -1,5 +1,4 @@
 ﻿
-using System.Threading.Tasks;
 using BigModelBinding.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,17 +6,16 @@ namespace BigModelBinding.Controllers
 {
     public class HomeController : Controller
     {
-        public static EnrollmentService DatabaseModel;
-
-        public async Task<IActionResult> Index(EnrollmentService es)
+        public IActionResult Index(EnrollmentService model)
         {
             if (ModelState.IsValid)
             {
-                es = DatabaseModel;
-                await TryUpdateModelAsync(es);
+                return Ok(model);
             }
-
-            return View(es);
+            else
+            {
+                return HttpBadRequest(ModelState);
+            }
         }
     }
 }

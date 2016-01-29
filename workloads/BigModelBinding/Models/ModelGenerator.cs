@@ -1,30 +1,141 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace BigModelBinding.Models
 {
     public static class ModelGenerator
     {
+        public static readonly EnrollmentService About100Fields = new EnrollmentService()
+        {
+            CreatedDate = DateTime.Now,
+            UpdateBy = Guid.NewGuid().ToString(),
+            UpdatedDate = DateTime.Now,
+
+            Provider = new Provider()
+            {
+                CreatedDate = DateTime.Now,
+                Name = Guid.NewGuid().ToString(),
+                UpdateBy = Guid.NewGuid().ToString(),
+                UpdatedDate = DateTime.Now,
+
+                Services = new List<Service>()
+                    {
+                        new Service()
+                        {
+                            Code = "abcd",
+                            CreatedDate = DateTime.Now,
+                            Name = Guid.NewGuid().ToString(),
+                            SubName = Guid.NewGuid().ToString(),
+                            UpdateBy = Guid.NewGuid().ToString(),
+                            UpdatedDate = DateTime.Now,
+                        },
+                        new Service()
+                        {
+                            Code = "abcd",
+                            CreatedDate = DateTime.Now,
+                            Name = Guid.NewGuid().ToString(),
+                            SubName = Guid.NewGuid().ToString(),
+                            UpdateBy = Guid.NewGuid().ToString(),
+                            UpdatedDate = DateTime.Now,
+                        },
+                        new Service()
+                        {
+                            Code = "abcd",
+                            CreatedDate = DateTime.Now,
+                            Name = Guid.NewGuid().ToString(),
+                            SubName = Guid.NewGuid().ToString(),
+                            UpdateBy = Guid.NewGuid().ToString(),
+                            UpdatedDate = DateTime.Now,
+                        }
+                    }
+            },
+            Enrollment = new Enrollment()
+            {
+                CreatedDate = DateTime.Now,
+                UpdateBy = Guid.NewGuid().ToString(),
+                UpdatedDate = DateTime.Now,
+
+                Client = new Client()
+                {
+                    CreatedDate = DateTime.Now,
+                    UpdateBy = Guid.NewGuid().ToString(),
+                    UpdatedDate = DateTime.Now,
+
+                    HomeAddress = new Address()
+                    {
+                        City = "Seattle",
+                        State = "WA",
+                        Street1 = Guid.NewGuid().ToString(),
+                        Zip = 98004,
+                    },
+                },
+                Program = new Program()
+                {
+                    CreatedDate = DateTime.Now,
+                    UpdateBy = Guid.NewGuid().ToString(),
+                    UpdatedDate = DateTime.Now,
+
+                    Services = new List<Service>()
+                        {
+                            new Service()
+                            {
+                                Code = "abcd",
+                                CreatedDate = DateTime.Now,
+                                Name = Guid.NewGuid().ToString(),
+                                SubName = Guid.NewGuid().ToString(),
+                                UpdateBy = Guid.NewGuid().ToString(),
+                                UpdatedDate = DateTime.Now,
+                            },
+                            new Service()
+                            {
+                                Code = "abcd",
+                                CreatedDate = DateTime.Now,
+                                Name = Guid.NewGuid().ToString(),
+                                SubName = Guid.NewGuid().ToString(),
+                                UpdateBy = Guid.NewGuid().ToString(),
+                                UpdatedDate = DateTime.Now,
+                            },
+                            new Service()
+                            {
+                                Code = "abcd",
+                                CreatedDate = DateTime.Now,
+                                Name = Guid.NewGuid().ToString(),
+                                SubName = Guid.NewGuid().ToString(),
+                                UpdateBy = Guid.NewGuid().ToString(),
+                                UpdatedDate = DateTime.Now,
+                            }
+                        }
+                },
+            },
+            Service = new Service()
+            {
+                Code = "abcd",
+                CreatedDate = DateTime.Now,
+                Name = Guid.NewGuid().ToString(),
+                SubName = Guid.NewGuid().ToString(),
+                UpdateBy = Guid.NewGuid().ToString(),
+                UpdatedDate = DateTime.Now,
+            },
+        };
+
         public static EnrollmentService GenerateModel()
         {
             var random = new Random(5757);
 
             var typeFactors = new Dictionary<Type, int>()
             {
-                { typeof(EnrollmentService), 5 },
-                { typeof(Service), 1 },
-                { typeof(Provider), 1 },
-                { typeof(Client), 50000 },
-                { typeof(Program), 20 },
-                { typeof(Note), 1000 },
-                { typeof(Doc), 1000 },
-                { typeof(Contact), 500 },
-                { typeof(User), 1200 },
-                { typeof(ClientCareSetting), 1000 }
+                { typeof(EnrollmentService), 2 },
+                { typeof(Service), 2 },
+                { typeof(Provider), 2 },
+                { typeof(Client), 5 },
+                { typeof(Program), 2 },
+                { typeof(Note), 0 },
+                { typeof(Doc), 0 },
+                { typeof(Contact), 0 },
+                { typeof(User), 2 },
+                { typeof(ClientCareSetting), 0 }
             };
 
             var entities = new Dictionary<Type, List<object>>()
