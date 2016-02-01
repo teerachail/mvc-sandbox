@@ -29,7 +29,7 @@ namespace HelloWorldMvc
         public static void Main(string[] args)
         {
             var application = new WebHostBuilder()
-                .UseConfiguration(WebHostConfiguration.GetDefault(args))
+                .UseDefaultConfiguration(args)
                 .UseStartup<Startup>()
                 .Build();
 

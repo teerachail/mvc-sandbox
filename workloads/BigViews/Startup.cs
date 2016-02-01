@@ -20,7 +20,7 @@ namespace BigViews
         public static void Main(string[] args)
         {
             var application = new WebHostBuilder()
-                .UseConfiguration(WebHostConfiguration.GetDefault(args))
+                .UseDefaultConfiguration(args)
                 .UseIISPlatformHandlerUrl()
                 .UseStartup<Startup>()
                 .Build();
