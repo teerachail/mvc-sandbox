@@ -14,13 +14,19 @@ namespace RazorCodeGenerator
         {
             if (args.Length > 0 && File.Exists(args[0]))
             {
+                var dump = false;
                 var iterations = 15;
-                if (args.Length > 1)
+                if (args.Length > 1 && args[1] == "--dump")
+                {
+                    dump = true;
+                    iterations = 1;
+                }
+                else if (args.Length > 1)
                 {
                     iterations = int.Parse(args[1]);
                 }
 
-                GenerateCodeFile(Path.GetFullPath(args[0]), "Test", iterations);
+                GenerateCodeFile(Path.GetFullPath(args[0]), "Test", iterations, dump);
 
                 Console.WriteLine("Press the ANY key to exit.");
                 Console.ReadLine();
@@ -33,7 +39,7 @@ namespace RazorCodeGenerator
             }
         }
 
-        private static void GenerateCodeFile(string file, string @namespace, int iterations)
+        private static void GenerateCodeFile(string file, string @namespace, int iterations, bool dump)
         {
             var basePath = Path.GetDirectoryName(file);
             var fileName = Path.GetFileName(file);
@@ -58,6 +64,11 @@ namespace RazorCodeGenerator
                         className: fileNameNoExtension,
                         rootNamespace: Path.GetFileName(@namespace),
                         sourceFileName: fileName);
+                    
+                    if (dump)
+                    {
+                        File.WriteAllText(Path.ChangeExtension(file, ".cs"), code.GeneratedCode);
+                    }
                 }
 
                 Console.WriteLine("Completed iteration: " + (i + 1));
