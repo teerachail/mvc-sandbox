@@ -1,10 +1,7 @@
 ﻿{
   "dependencies": {
-    "Microsoft.NETCore.App": {
-      "version": "1.0.0-rc2-3002426",
-      "type": "platform"
-    },
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-rc2-*",
+    "Microsoft.AspNetCore.MiddlewareAnalysis": "1.0.0-rc2-*",
     "Microsoft.AspNetCore.Mvc": "1.0.0-rc2-*",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-rc2-*",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-rc2-*",
@@ -23,11 +20,19 @@
 
   "frameworks": {
     "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0-rc2-3002426",
+          "type": "platform"
+        }
+      },
       "imports": [
         "dotnet5.6",
         "dnxcore50",
         "portable-net45+win8"
       ]
+    },
+    "net46": {
     }
   },
 
