@@ -1,7 +1,11 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
-namespace WebApp
+namespace Api
 {
     public class Program
     {
@@ -9,7 +13,7 @@ namespace WebApp
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
-                .UseUrls("http://corsweb2:5001")
+                .UseUrls("http://corsweb1:5000")
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
