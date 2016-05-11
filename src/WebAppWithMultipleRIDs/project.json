@@ -1,0 +1,45 @@
+﻿{
+  "dependencies": {
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-rc2-20801",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-rc2-20801"
+  },
+
+  "tools": {
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
+      "version": "1.0.0-rc2-20801",
+      "imports": "portable-net45+win8+dnxcore50"
+    }
+  },
+
+  "frameworks": {
+    "netstandardapp1.5": {
+      "dependencies": {
+        "NETStandard.Library": "1.5.0-rc2-24027"
+      }
+    }
+  },
+  "runtimes": {
+    "win7-x86": { },
+    "win7-x64": { }
+  },
+
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true
+  },
+
+  "runtimeOptions": {
+    "gcServer": true
+  },
+
+  "publishOptions": {
+    "include": [
+      "wwwroot",
+      "web.config"
+    ]
+  },
+
+  "scripts": {
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+  }
+}
